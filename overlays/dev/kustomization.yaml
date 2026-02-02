@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: gitops-test
+
+resources:
+  - ../../base
+  - ../../apps/nginx-demo
+  - ../../apps/redis-demo
+  - ../../apps/httpbin
+
+commonLabels:
+  environment: dev
+  app.kubernetes.io/managed-by: fleet
+
+# Development-specific patches
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          fleet.cattle.io/bundle-id: gitops-test-dev
+
+# Optional: Add resource annotations
+commonAnnotations:
+  fleet.cattle.io/commit: "dev"

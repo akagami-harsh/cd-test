@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gitops-test
+  labels:
+    app.kubernetes.io/managed-by: fleet
+    purpose: testing

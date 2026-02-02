@@ -1,0 +1,44 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: gitops-prod
+
+resources:
+  - ../../base
+  - ../../apps/nginx-demo
+  - ../../apps/redis-demo
+  # httpbin excluded from prod
+
+commonLabels:
+  environment: prod
+  app.kubernetes.io/managed-by: fleet
+
+# Production-specific patches - higher replicas
+patches:
+  - target:
+      kind: Deployment
+      name: nginx-demo
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 2
+  - target:
+      kind: Deployment
+      name: redis-demo
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          fleet.cattle.io/bundle-id: gitops-test-prod
+
+# Namespace patch for prod
+nameSuffix: ""
+
+commonAnnotations:
+  fleet.cattle.io/commit: "prod"

@@ -1,0 +1,38 @@
+# Fleet bundle configuration
+# This file tells Fleet how to deploy the contents of this repository
+
+defaultNamespace: gitops-test
+
+# Target clusters with specific labels
+targetCustomizations:
+  - name: dev
+    clusterSelector:
+      matchLabels:
+        env: dev
+    yaml:
+      overlays:
+        - overlays/dev
+
+  - name: local
+    clusterSelector:
+      matchLabels:
+        provider.cattle.io/name: local
+    yaml:
+      overlays:
+        - overlays/dev
+
+# Helm options (if using Helm charts)
+helm:
+  releaseName: gitops-test
+  
+# Kustomize options
+kustomize:
+  dir: overlays/dev
+
+# Deployment options
+diff:
+  comparePatches:
+    - apiVersion: apps/v1
+      kind: Deployment
+      operations:
+        - {"op": "remove", "path": "/spec/replicas"}
