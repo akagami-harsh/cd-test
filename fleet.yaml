@@ -1,5 +1,6 @@
 # Fleet bundle configuration
 # This file tells Fleet how to deploy the contents of this repository
+# Using pure Kustomize
 
 defaultNamespace: gitops-test
 
@@ -9,23 +10,17 @@ targetCustomizations:
     clusterSelector:
       matchLabels:
         env: dev
-    yaml:
-      overlays:
-        - overlays/dev
+    kustomize:
+      dir: overlays/dev
 
   - name: local
     clusterSelector:
       matchLabels:
         provider.cattle.io/name: local
-    yaml:
-      overlays:
-        - overlays/dev
+    kustomize:
+      dir: overlays/dev
 
-# Helm options (if using Helm charts)
-helm:
-  releaseName: gitops-test
-  
-# Kustomize options
+# Default Kustomize options (fallback)
 kustomize:
   dir: overlays/dev
 
