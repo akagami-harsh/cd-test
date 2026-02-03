@@ -4,6 +4,7 @@ metadata:
   name: nginx-demo-content
   labels:
     app: nginx-demo
+    app.kubernetes.io/managed-by: fleet
 data:
   index.html: |
     <!DOCTYPE html>

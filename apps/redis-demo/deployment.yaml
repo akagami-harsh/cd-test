@@ -6,6 +6,7 @@ metadata:
     app: redis-demo
     app.kubernetes.io/name: redis-demo
     app.kubernetes.io/component: cache
+    app.kubernetes.io/managed-by: fleet
 spec:
   replicas: 1
   selector:
