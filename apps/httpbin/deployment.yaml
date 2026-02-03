@@ -7,6 +7,7 @@ metadata:
     app.kubernetes.io/name: httpbin
     app.kubernetes.io/component: api-testing
     app.kubernetes.io/managed-by: fleet
+    test-gitops: yes
 spec:
   replicas: 1
   selector:
