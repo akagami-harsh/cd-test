@@ -24,10 +24,19 @@ targetCustomizations:
 kustomize:
   dir: overlays/dev
 
-# Deployment options
+# Deployment options - ignore labels that Fleet/Helm manages
 diff:
   comparePatches:
     - apiVersion: apps/v1
       kind: Deployment
       operations:
         - {"op": "remove", "path": "/spec/replicas"}
+        - {"op": "remove", "path": "/metadata/labels/app.kubernetes.io~1managed-by"}
+    - apiVersion: v1
+      kind: ConfigMap
+      operations:
+        - {"op": "remove", "path": "/metadata/labels/app.kubernetes.io~1managed-by"}
+    - apiVersion: v1
+      kind: Service
+      operations:
+        - {"op": "remove", "path": "/metadata/labels/app.kubernetes.io~1managed-by"}

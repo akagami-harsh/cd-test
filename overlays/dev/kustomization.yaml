@@ -11,7 +11,6 @@ resources:
 
 commonLabels:
   environment: dev
-  app.kubernetes.io/managed-by: fleet
 
 # Development-specific patches
 patches:
@@ -22,7 +21,3 @@ patches:
         path: /metadata/annotations
         value:
           fleet.cattle.io/bundle-id: gitops-test-dev
-
-# Optional: Add resource annotations
-commonAnnotations:
-  fleet.cattle.io/commit: "dev"

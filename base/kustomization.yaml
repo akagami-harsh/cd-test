@@ -5,5 +5,4 @@ kind: Kustomization
 resources: []
 
 commonLabels:
-  app.kubernetes.io/managed-by: fleet
   gitops: "true"
