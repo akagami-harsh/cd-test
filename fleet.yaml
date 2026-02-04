@@ -4,19 +4,12 @@
 
 defaultNamespace: gitops-test
 
-# Target clusters with specific labels
+# Target the local Rancher cluster
 targetCustomizations:
-  - name: dev
-    clusterSelector:
-      matchLabels:
-        env: dev
-    kustomize:
-      dir: overlays/dev
-
   - name: local
     clusterSelector:
       matchLabels:
-        provider.cattle.io/name: local
+        name: local  # This label exists on your local cluster
     kustomize:
       dir: overlays/dev
 
