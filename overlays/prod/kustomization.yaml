@@ -7,6 +7,7 @@ resources:
   - ../../base
   - ../../apps/nginx-demo
   - ../../apps/redis-demo
+  - ../../apps/monitoring
   # httpbin excluded from prod
 
 commonLabels:
