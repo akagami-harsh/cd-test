@@ -5,17 +5,18 @@
 defaultNamespace: gitops-test
 
 # Target the local Rancher cluster
+# cluster label info clusters.fleet.cattle.io
 targetCustomizations:
   - name: local
     clusterSelector:
       matchLabels:
-        name: local  # This label exists on your local cluster
+        name: local
     kustomize:
       dir: overlays/dev
 
 # Default Kustomize options (fallback)
-kustomize:
-  dir: overlays/dev
+# kustomize:
+#   dir: overlays/dev
 
 # Ignore drift on labels managed by Helm/Fleet
 diff:
