@@ -10,7 +10,7 @@ targetCustomizations:
   - name: local
     clusterSelector:
       matchLabels:
-        name: local
+        env: dev
     kustomize:
       dir: overlays/dev
 
