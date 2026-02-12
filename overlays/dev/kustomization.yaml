@@ -8,7 +8,7 @@ resources:
   - ../../apps/nginx-demo
   - ../../apps/redis-demo
   - ../../apps/httpbin
-  # - ../../apps/monitoring
+  - ../../apps/monitoring
 
 commonLabels:
   environment: dev
