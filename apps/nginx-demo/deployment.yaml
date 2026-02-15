@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/component: webserver
     app.kubernetes.io/managed-by: fleet
 spec:
-  replicas: 15
+  replicas: 1
   selector:
     matchLabels:
       app: nginx-demo
